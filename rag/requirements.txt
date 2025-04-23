@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+weaviate-client>=4.0.0
+openai
+python-multipart
+PyPDF2
+nltk<3.8
+python-dotenv
+sentence-transformers
+scikit-learn
+tiktoken

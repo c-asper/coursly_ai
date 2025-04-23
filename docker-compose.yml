@@ -1,0 +1,40 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_BACKEND_URL: "http://backend:4000"
+        VITE_RAG_URL:     "http://rag:8000"
+    ports:
+      - "3000:3000"
+    env_file: ./backend/.env
+    depends_on:
+      - backend
+      - rag
+    networks:
+      - default
+
+  backend:
+    build: ./backend
+    env_file: ./backend/.env
+    ports:
+      - "4000:4000"
+    environment:
+      - RAG_URL=http://rag:8000
+    depends_on:
+      - rag
+    networks:
+      - default
+  rag:
+    build: ./rag
+    env_file: ./rag/.env
+    ports:
+      - "8000:8000"
+    environment:
+      - BACKEND_URL=http://backend:4000
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge

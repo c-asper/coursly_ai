@@ -1,0 +1,12 @@
+# Global stuff
+node_modules/
+.env
+dist/
+build/
+.vscode/
+.DS_Store
+
+# Specific to subfolders
+frontend/node_modules/
+backend/node_modules/
+rag/.venv/
